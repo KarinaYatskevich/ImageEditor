@@ -5,9 +5,19 @@
     <title>Image Editor</title>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div class="wrapper-input">
+        <div>
+            <label class="btn">
+                <input name="file" type="file" style="display:None;" id="upload-button" multiple> <span class="choose-file-text">Choose file:</span>
+            </label>
+            <span>no file selected</span>
+        </div>
+        <button id="submit-button">Submit</button>
+    </div>
+    <div class="wrapper-image">
         <div class="editor">
             <div class="filter">
                 <label for="blur">Blur</label>
@@ -36,7 +46,6 @@
                     <img id="chosen-image" width="300" height="200">
                 </div>
             </div>
-            <input type="file" id="upload-button" accept="Image/*">
         </div>
     </div>
 

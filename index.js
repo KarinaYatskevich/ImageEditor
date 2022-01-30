@@ -6,9 +6,26 @@ const sepiaElement = document.getElementById("sepia");
 const uploadButtonElement = document.getElementById("upload-button");
 const chosenImageElement = document.getElementById("chosen-image");
 const defaultImageElement = document.getElementById("default-image");
+const wrapperImageElement = document.querySelector(".wrapper-image");
+const wrapperInputElement = document.querySelector(".wrapper-input");
+const submitButtonElement = document.getElementById("submit-button");
 
 const imageContainerElement = document.querySelector(".image-container");
 const sliders = document.querySelectorAll(".filter input[type='range']");
+
+
+submitButtonElement.addEventListener('click',() => {
+  wrapperImageElement.style.visibility = 'visible';
+  wrapperInputElement.style.display = "none";
+})
+
+Array.prototype.forEach.call(wrapperInputElement.getElementsByTagName('input'), function(item) {
+  item.addEventListener("change", function() {
+    var fileName = '';
+    fileName = this.value.split("\\").slice(-1)[0];
+    this.parentNode.nextElementSibling.innerHTML = fileName;
+  });
+});
 
 function resetFilter(){
   blurElement.value = "0";
@@ -16,7 +33,7 @@ function resetFilter(){
   hueRotateElement.value = "25";
   sepiaElement.value = "0";
   addFilter();
-}
+} 
 
 uploadButtonElement.onchange = () => {
     resetFilter();
