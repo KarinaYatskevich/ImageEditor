@@ -5,6 +5,7 @@
     font-family: "Rubik",sans-serif;
 }
 body{
+    margin: 20px;
 }
 .wrapper-input{
     position: absolute;
@@ -30,18 +31,9 @@ body{
     border-radius: 5px;
     color: white;
 }
+
 .wrapper-image{
-    padding: 50px 30px;
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 50%;
-    left: 50%;
-    border-radius: 10px;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.15);
-    display: grid;
-    grid-template-columns: 5fr 10fr;
-    gap: 22px;
-    visibility: hidden;
+    visibility: hidden ;
 }
 .editor{
     height: 100px;
@@ -50,7 +42,10 @@ body{
     flex-direction: column;
     justify-content: space-around;
     gap: 10px;
-    padding: 50px 0px 0px 0px;
+    margin: 80px 50px 0 0px;
+    position: absolute; 
+    top: 0;
+    right: 0;
 }
 .editor label{
     font-size: 2.8vmin;
@@ -64,20 +59,8 @@ body{
     margin-top: 5px;
 }
 
-@media screen and (max-width: 620px) {
-    .wrapper{
-        grid-template-columns: 1fr;
-        padding: 30px 20px;
-        gap:  10px;
-    }
-    .editor{
-        grid-row: 2;
-    }
-}
-
 .image-container {
 	position: relative;
-	height: 200px; 
 }
 
 .img-comp-img {
@@ -96,9 +79,9 @@ body{
 	position: absolute;
 	z-index:9;
 	cursor: ew-resize;
-	/*установите внешний вид ползунка:*/
-	width: 40px;
-	height: 40px;
+	/* внешний вид ползунка:*/
+	width: 20px;
+	height: 20px;
 	background-color: #2196F3;
 	opacity: 0.7;
 	border-radius: 50%;

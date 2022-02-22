@@ -19,12 +19,14 @@ submitButtonElement.addEventListener('click',() => {
   wrapperInputElement.style.display = "none";
 })
 
-Array.prototype.forEach.call(wrapperInputElement.getElementsByTagName('input'), function(item) {
-  item.addEventListener("change", function() {
-    var fileName = '';
+const inputElement = wrapperInputElement.getElementsByTagName('input')
+Array.prototype.forEach.call(inputElement, function(item) {
+  item.addEventListener("change", changeFileName)
+  function changeFileName(){
+    let fileName = '';
     fileName = this.value.split("\\").slice(-1)[0];
     this.parentNode.nextElementSibling.innerHTML = fileName;
-  });
+  }
 });
 
 function resetFilter(){
@@ -36,14 +38,13 @@ function resetFilter(){
 } 
 
 uploadButtonElement.onchange = () => {
-    resetFilter();
-    imageContainerElement.style.display = "block";
-    let reader = new FileReader();
-    reader.readAsDataURL(uploadButtonElement.files[0]);
-    reader.onload = () => {
-      chosenImageElement.setAttribute("src", reader.result);
-      defaultImageElement.setAttribute("src", reader.result);
-    }
+  resetFilter();
+  let reader = new FileReader();
+  reader.readAsDataURL(uploadButtonElement.files[0])
+  reader.addEventListener("load", function(){
+      chosenImageElement.setAttribute("src", reader.result)
+      defaultImageElement.setAttribute("src", reader.result)
+  })
 }
 
 sliders.forEach( slider => {
