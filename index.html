@@ -11,9 +11,9 @@
     <div class="wrapper-input">
         <div>
             <label class="btn">
-                <input name="file" type="file" style="display:None;" id="upload-button" multiple> <span class="choose-file-text">Choose file:</span>
+                <input name="file" type="file" style="display:None;" id="file-input"> <span class="choose-file-text">Choose file:</span>
             </label>
-            <span>no file selected</span>
+            <span id="file-name">no file selected</span>
         </div>
         <button id="submit-button">Submit</button>
     </div>
@@ -38,10 +38,13 @@
         </div>
         <div class="result">
             <div class="image-container">
+                <div class="img-comp-slider" id="img-comp-slider">
+                    
+                </div>
                 <div class="img-comp-img">
                     <img  id="default-image" width="900" height="600">
                 </div>
-                <div class="img-comp-img img-comp-overlay">
+                <div class="img-comp-img img-comp-overlay" id="img-comp-overlay">
                     <img id="chosen-image" width="900" height="600">
                 </div>
             </div>
