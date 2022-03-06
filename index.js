@@ -42,7 +42,7 @@ function resetFilter(){
 
 fileInputElement.onchange = () => {
   resetFilter();
-  let reader = new FileReader();
+  const reader = new FileReader();
   reader.readAsDataURL(fileInputElement.files[0])
   reader.addEventListener("load", function(){
       chosenImageElement.setAttribute("src", reader.result)
@@ -61,41 +61,38 @@ function addFilter(){
 
 
 function compareImage(img) {
-  function slideReady(e) {
-    function slideMove(e) {
-      function getCursorPos(e) {
-        let a, x = 0;
-        e = e || window.event;
+  function slideReady(event) {
+    function slideMove(event) {
+      function getCursorPos(event) {
+        let x = 0;
         /*получить x позиции изображения:*/
-        a = img.getBoundingClientRect();
+        const imgPosition = img.getBoundingClientRect();
         /*вычислите координату х курсора относительно изображения:*/
-        x = e.pageX - a.left;
+        x = event.pageX - imgPosition.left;
         /*рассмотрим любую прокрутку страницы:*/
         x = x - window.pageXOffset;
         return x;
       }
-  
-      function slide(x) {
+      function slide(pos) {
         /*изменение размера изображения:*/
-        img.style.width = x + "px";
+        img.style.width = pos + "px";
         /*расположите ползунок:*/
         imageCompareSliderElement.style.left = img.offsetWidth - (imageCompareSliderElement.offsetWidth / 2) + "px";
       }
   
-      let pos;
       /*если ползунок больше не нажат, выйдите из этой функции:*/
       if (clicked == 0) return false;
       /*получить х положения курсора :*/
-      pos = getCursorPos(e)
+      let cursorPos = getCursorPos(event)
       /*не допускайте расположения ползунка вне изображения:*/
-      if (pos < 0) pos = 0;
-      if (pos > imgWidth) pos = imgWidth;
+      if (cursorPos < 0) cursorPos = 0;
+      if (cursorPos > imgWidth) cursorPos = imgWidth;
       /*выполните функцию, которая изменит размер наложенного изображения в соответствии с курсором:*/
-      slide(pos);
+      slide(cursorPos);
     }
 
     /*предотвратите любые другие действия, которые могут произойти при перемещении по изображению:*/
-    e.preventDefault();
+    event.preventDefault();
     /*теперь ползунок нажат и готов к перемещению:*/
     clicked = 1;
     /*выполнение функции при перемещении ползунка:*/
@@ -107,11 +104,10 @@ function compareImage(img) {
     clicked = 0;
   }
 
-
   var clicked = 0;
   /*получить ширину и высоту элемента img*/
-  let imgWidth = img.offsetWidth;
-  let imgHeight = img.offsetHeight;
+  const imgWidth = img.offsetWidth;
+  const imgHeight = img.offsetHeight;
   /*установите ширину элемента img на 50%:*/
   img.style.width = (imgWidth / 2) + "px";
   /*расположите ползунок посередине:*/
